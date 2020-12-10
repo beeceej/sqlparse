@@ -499,6 +499,7 @@ class Parenthesis(TokenList):
     def _groupable_tokens(self):
         return self.tokens[1:-1]
 
+
 class Jinja(TokenList):
     """Tokens between Jinja Brackets."""
     M_OPEN = T.Jinja, '{{'

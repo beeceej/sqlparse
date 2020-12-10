@@ -113,7 +113,6 @@ class ReindentFilter:
         ttypes = T.Keyword.DML, T.Keyword.DDL
         _, is_dml_dll = tlist.token_next_by(t=ttypes)
         fidx, first = tlist.token_next_by(m=sql.Jinja.M_OPEN)
-        print("tlist", tlist)
         if first is None:
             return
         _, has_new_lines = tlist.token_next_by(t=T.Newline)
@@ -245,6 +244,10 @@ class ReindentFilter:
     def _process_default(self, tlist, stmts=True):
         self._split_statements(tlist) if stmts else None
         self._split_kwds(tlist)
+        cte_idx, _ = tlist.token_next_by(t=T.CTE)
+        if cte_idx:
+            tlist.tokens.insert(cte_idx, self.nl())
+
         for sgroup in tlist.get_sublists():
             self._process(sgroup)
 
