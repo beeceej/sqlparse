@@ -56,6 +56,8 @@ def group_brackets(tlist):
 def group_parenthesis(tlist):
     _group_matching(tlist, sql.Parenthesis)
 
+def group_jinja(tlist):
+    _group_matching(tlist, sql.Jinja)
 
 def group_case(tlist):
     _group_matching(tlist, sql.Case)
@@ -391,6 +393,7 @@ def group(stmt):
         # _group_matching
         group_brackets,
         group_parenthesis,
+        group_jinja,
         group_case,
         group_if,
         group_for,
