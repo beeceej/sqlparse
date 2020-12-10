@@ -6,7 +6,7 @@ import os
 import pytest
 
 DIR_PATH = os.path.dirname(__file__)
-FILES_DIR = os.path.join(DIR_PATH, 'files')
+FILES_DIR = os.path.join(DIR_PATH, "files")
 
 
 @pytest.fixture()
@@ -27,7 +27,7 @@ def filepath():
 def load_file(filepath):
     """Opens filename with encoding and return its contents."""
 
-    def make_load_file(filename, encoding='utf-8'):
+    def make_load_file(filename, encoding="utf-8"):
         # https://stackoverflow.com/questions/18011902/py-test-pass-a-parameter-to-a-fixture-function
         # Alternate solution is to use parametrization `indirect=True`
         # https://stackoverflow.com/questions/18011902/py-test-pass-a-parameter-to-a-fixture-function/33879151#33879151
@@ -41,7 +41,7 @@ def load_file(filepath):
 
 @pytest.fixture()
 def get_stream(filepath):
-    def make_stream(filename, encoding='utf-8'):
+    def make_stream(filename, encoding="utf-8"):
         return open(filepath(filename), encoding=encoding)
 
     return make_stream

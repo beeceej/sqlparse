@@ -20,15 +20,15 @@ def extract_definitions(token_list):
     for token in token_list.flatten():
         if token.is_whitespace:
             continue
-        elif token.match(sqlparse.tokens.Punctuation, '('):
+        elif token.match(sqlparse.tokens.Punctuation, "("):
             par_level += 1
             continue
-        if token.match(sqlparse.tokens.Punctuation, ')'):
+        if token.match(sqlparse.tokens.Punctuation, ")"):
             if par_level == 0:
                 break
             else:
                 par_level += 1
-        elif token.match(sqlparse.tokens.Punctuation, ','):
+        elif token.match(sqlparse.tokens.Punctuation, ","):
             if tmp:
                 definitions.append(tmp)
             tmp = []
@@ -39,7 +39,7 @@ def extract_definitions(token_list):
     return definitions
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     SQL = """CREATE TABLE foo (
              id integer primary key,
              title varchar(200) not null,
@@ -52,5 +52,8 @@ if __name__ == '__main__':
     columns = extract_definitions(par)
 
     for column in columns:
-        print('NAME: {name!s:12} DEFINITION: {definition}'.format(
-            name=column[0], definition=' '.join(str(t) for t in column[1:])))
+        print(
+            "NAME: {name!s:12} DEFINITION: {definition}".format(
+                name=column[0], definition=" ".join(str(t) for t in column[1:])
+            )
+        )
