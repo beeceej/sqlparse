@@ -66,3 +66,7 @@ Token.Number = Number
 DML = Keyword.DML
 DDL = Keyword.DDL
 CTE = Keyword.CTE
+
+# Jinja Tokens
+Jinja = Token.Jinja
+Jinja = Token.Jinja

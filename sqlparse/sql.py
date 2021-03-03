@@ -500,6 +500,16 @@ class Parenthesis(TokenList):
         return self.tokens[1:-1]
 
 
+class Jinja(TokenList):
+    """Tokens between Jinja Brackets."""
+    M_OPEN = T.Jinja, '{{'
+    M_CLOSE = T.Jinja, '}}'
+
+    @property
+    def _groupable_tokens(self):
+        return self.tokens[1:-1]
+
+
 class SquareBrackets(TokenList):
     """Tokens between square brackets"""
     M_OPEN = T.Punctuation, '['
